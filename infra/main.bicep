@@ -149,6 +149,9 @@ module hub 'core/ai/hub.bicep' = if (switches.CoreDeploy) {
 module project 'core/ai/project.bicep' = if (switches.CoreDeploy) {
   scope: rg
   name: 'project'
+  dependsOn: [
+    hub
+  ]
   params: {
     name: AIHubProjectName
     hubName: AIHubName
