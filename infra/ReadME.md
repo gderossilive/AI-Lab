@@ -66,6 +66,7 @@ Outputs from this module, like the App Service URL and SQL Database connection s
 
 ## Usage
 1. Modify parameters in the .env file to match your environment.
+
 2. Deploy with Azure CLI:
    ```bash
    ./Setup.azcli

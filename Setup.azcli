@@ -2,10 +2,10 @@
 
 # IMPORTANT: before to start to execute this script, you need to create a .env file with the following content:
 # MySubscriptionId=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-# MyObjectId=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 # MyTenantId=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 # location=<your favorite location>
-# adminUsername=<your favorite admin username>
+# sqlAdminLoginName=<your favorite sql admin username>
+# sqlAdminSid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 # Refer to the .env.sample file for an example
 
 # import environment variables from .env file
