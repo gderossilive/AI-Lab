@@ -1,0 +1,5 @@
+.env
+.env.contoso
+.env.fdpo
+*.zip
+*.venv*

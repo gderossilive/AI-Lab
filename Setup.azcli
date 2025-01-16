@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# IMPORTANT: before to start to execute this script, you need to create a .env file with the following content:
+# MySubscriptionId=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+# MyObjectId=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+# MyTenantId=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+# location=<your favorite location>
+# adminUsername=<your favorite admin username>
+# Refer to the .env.sample file for an example
+
+# import environment variables from .env file
+source .env
+
+# Seed is a random string used to create unique names for the resources
+Seed=$(tr -dc 'a-z0-9' < /dev/urandom | head -c 6)
+echo "$Seed"
+
+# Create the resource group with the automatic SQL Server extension deployment tag set to PAYG
+az group create --name "$Seed-Demo" --location "$location" 
+
+#principalName="AIDeploySP-$Seed"
+#principalPwd=$(az ad sp create-for-rbac --name $sqlAdminLoginName --query password -o tsv)
+#principalId=$(az ad sp list --display-name $sqlAdminLoginName --query "[0].appId" -o tsv)
+
+# Create the CoreAI infrastructure
+az deployment sub create \
+     --name "CoreDeploy-$Seed" \
+     --location $location \
+     --template-file './infra/main.bicep' \
+     --parameters \
+          location=$location \
+          environmentName="CoreDeploy-$Seed" \
+          sqlAdminLoginName=$sqlAdminLoginName \
+          sqlAdminSid=$sqlAdminSid \
+          principalId=$sqlAdminSid \
+          resourceGroupName="$Seed-Demo"
